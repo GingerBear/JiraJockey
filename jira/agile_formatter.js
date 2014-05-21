@@ -33,7 +33,7 @@ function updateSprintData () {
 
     // get available data
     store.get(ticketId, function (data) {
-      console.log(data)
+
       // if there is no up to date data
       if (!data || !Object.keys(data).length || (data && (currentTime() - data.timeStamp) > FIVEMIN)) {
         console.log('call')
@@ -56,7 +56,7 @@ function formatTicket (id, ticketObj) {
   var data        = ticketObj[id]
     , ticket      = $('.js-issue[data-issue-key=' + id + ']:not(.formatted):not(#daily-goal)')
     , progressBar = ticket.find('.ghx-grabber');
-    
+
   // if the ticket was not found, or is already formatted, exit
   if (!ticket.length) { return; }
 
@@ -151,7 +151,7 @@ function updateTicket (ticket) {
       });
 
     ticketData[ticket] = data;
-    store.set(data);
+    store.set(ticketData);
     formatTicket(ticket, ticketData);
   })
 }
