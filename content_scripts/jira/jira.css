@@ -70,3 +70,33 @@
 .ghx-backlog-group {
   margin-bottom : 60px;
 }
+
+/* SPRINT NAV BAR */
+
+#sprint-nav-bar {
+  position: absolute;
+  right: 20px;
+  top: 20%;
+  width: 10px;
+}
+
+#sprint-nav-bar .section {
+  line-height: 12px;
+  text-align: center;
+  height: 100px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+  border: 1px solid #cccccc;
+  background-color: rgb(230, 227, 227);
+}
+
+#sprint-nav-bar div {
+  width:100%;
+  height: 50%;
+}
+
+#sprint-nav-bar span {
+  position: absolute;
+  margin-right: 15px;
+  margin-top: 10px;
+}

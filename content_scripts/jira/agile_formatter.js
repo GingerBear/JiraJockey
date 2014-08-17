@@ -6,9 +6,9 @@ var goalLine1    = 'Goal Line'
 // get the agile board to update the cache, since the cache is used in ticket shading
 var rapidBoardId = (window.location.search.match((/rapidView=(\d+)/)) || [] ) [1];
 
-
 poller.addFunc(formatGoal);
 poller.addFunc(updateTicketFormatting);
+poller.addFunc(addNavBar)
 
 // start the poller
 poller.start()
@@ -20,6 +20,27 @@ poller.start()
 
 // only execucte if the mouse is up
 var mouseDown;
+
+function addNavBar () {
+  if ($('#sprint-nav-bar').length) { return; }
+
+  var navBar =  '<div id="sprint-nav-bar">' + 
+                  '<div class="section"><span>s p r i n t</span>' +
+                    '<div id="jump-top-sprint"></div>' +
+                    '<div id="jump-bottom-sprint"></div>' +
+                  '</div>' +
+                  '<div class="section"><span>h o l d i n g</span>' +
+                    '<div id="jump-top-holding"></div>' +
+                    '<div id="jump-bottom-holding"></div>' +
+                  '</div>' +
+                  '<div class="section"><span>l o g</span>' + 
+                    '<div id="jump-top-log"></div>' +
+                    '<div id="jump-bottom-log"></div>' +
+                  '</div>' +
+                '</div>';
+
+  $('#ghx-backlog-column').append(navBar);
+}
 
 //format the daily goal
 function formatGoal () {
