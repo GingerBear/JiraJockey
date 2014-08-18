@@ -33,13 +33,45 @@ function addNavBar () {
                     '<div id="jump-top-holding"></div>' +
                     '<div id="jump-bottom-holding"></div>' +
                   '</div>' +
-                  '<div class="section"><span>l o g</span>' + 
+                  '<div class="section"><span>b a c k l o g</span>' + 
                     '<div id="jump-top-log"></div>' +
                     '<div id="jump-bottom-log"></div>' +
                   '</div>' +
                 '</div>';
 
   $('#ghx-backlog-column').append(navBar);
+
+  //add listeners
+  $('#sprint-nav-bar .section div').on('click hover', function (e) {
+    console.warn('event')
+    // make sure we meet the conditions expected
+    if (!(e.type === 'click' && !mouseDown) || (e.type === 'hover' && mouseDown)) { return; }
+
+    var $this       = $(this)
+      , id          = $this.attr('id')
+      , $containers = $('.ghx-issues.js-issue-list.ghx-has-issues')
+      , $scrollcont = $('ghx-backlog');
+      
+    if (id === 'jump-top-sprint') {
+      $containers.first().scrollTop();
+
+    } else if (id === 'jump-bottom-sprint') {
+      $containers.first().scrollTop();
+
+    } else if (id === 'jump-top-holding') {
+      $containers.eq(1).scrollTop();
+
+    } else if (id === 'jump-bottom-holding') {
+      $containers.eq(1).scrollTop();
+
+    } else if (id === 'jump-top-log') {
+      $containers.last().scrollTop();
+
+    } else if (id === 'jump-bottom-log') {
+      $containers.last().scrollTop();
+
+    }
+  });
 }
 
 //format the daily goal
