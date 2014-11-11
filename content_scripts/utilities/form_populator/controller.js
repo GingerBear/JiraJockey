@@ -1,10 +1,10 @@
-// $('body').append('<div id="populator" class="jj-button">populate</div>');
+$('body').append('<div id="populator" class="jj-button">populate</div>');
 
 
 $('#populator').on('click', function (populator) {
   $('input').each(function () {
     var $this    = $(this)
-      , title    = $this.attr('title') || ''
+      , title    = $this.attr('placeholder') || ''
       , value    = titleValueMap[title.toLowerCase()]
       , tabEvent = jQuery.Event("keydown");
 

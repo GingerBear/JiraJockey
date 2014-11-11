@@ -30,7 +30,7 @@ var forms = {
     us : {
       company : 'Branding Brand',
       phone   : '4123301234',
-      email   : 'brand@brandingbrand.com',
+      email   : 'qatest@brandingbrand.com',
       address : {
         country : 'US',
         city    : 'Pittsburgh',
@@ -39,8 +39,8 @@ var forms = {
         line2   : 'apt 2' 
       },
       name    : {
-        first : 'brand',
-        last  : 'brander'
+        first : 'Test',
+        last  : 'Order'
       },
       cc : {
         type   : 'visa',
