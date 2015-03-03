@@ -25,14 +25,29 @@
   </head>
   <body>
     <div class="jj-pop-container">
-      <div class="pop-buttons">
-        <div class="row">
-          <button class="pop-form">Fill Form</button>
-        </div>
+      <div class="tab-buttons">
+        <a href="#" class="form-fill btn" data-target="#form-fill-tab">Form Fill</a>
+        <a href="#" class="pr-formate btn" data-target="#pr-formate-tab">PR format</a>
       </div>
-      <div class="row">
-        <input type="checkbox" id="auto-fill" class="auto-fill">
-        <label for="auto-fill">Auto Fill</label>
+      <div class="tab-content">
+        <div class="tab" id="form-fill-tab">
+          <div class="pop-buttons">
+            <div class="row">
+              <button class="pop-form">Fill Form</button>
+            </div>
+          </div>
+          <div class="row">
+            <input type="checkbox" id="auto-fill" class="auto-fill">
+            <label for="auto-fill">Auto Fill</label>
+          </div>
+        </div>
+        <div class="tab" id="pr-format-tab">
+          <textarea name="" id="" cols="30" rows="10"></textarea>
+          <div class="row">
+            <button class="save-pr-format">Save</button>
+            <button class="reset-pr-format">Reset</button>
+          </div>
+        </div>
       </div>
     </div>
     <script src="../lib/external/jquery.js"></script>
