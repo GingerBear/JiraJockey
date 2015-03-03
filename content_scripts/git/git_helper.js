@@ -3,7 +3,7 @@ var poller = new Poller();
 poller.addFunc(linkTicket);
 poller.addFunc(formatLinks);
 poller.addFunc(seedPr);
-poller.addFunc(validatePR)
+poller.addFunc(validatePR);
 
 // start the poller
 poller.start();
@@ -20,7 +20,7 @@ function linkTicket () {
     , titleText  = prTitle.text()
     , match      = titleText.match(/(^[A-Z]+-[0-9]+)(\s*.*)/) || []
     , jiraTicket = match[1]
-    , trailing   = match[2]
+    , trailing   = match[2];
 
   // Convert the ticket number to a link
   if (jiraTicket) {
@@ -29,7 +29,7 @@ function linkTicket () {
 
     prTitle.empty();
     prTitle.append(link);
-    prTitle.append(trailing)
+    prTitle.append(trailing);
   }
 }
 
@@ -62,7 +62,7 @@ function formatLinks () {
     // set the text in the comment
     comment.empty();
     comment.append(text);
-  })
+  });
 }
 
 function seedPr () {
@@ -82,13 +82,17 @@ function seedPr () {
     }
   });
 
-  var seed = '**Ticket:** https://jira.brandingbrand.com/browse/' + lastTicket + '\n\n' +
+  chrome.storage.sync.get('prSeed', function(item) {
+    item.prSeed = item.prSeed || '**Ticket:** https://jira.brandingbrand.com/browse/{{jiraTicket}}\n\n' +
              '**Reviewers:** \n\n' +
              '## Description\n\n\n\n' +
              '## Test\n\n\n';
-  $field.val(seed);
-  $field.addClass('jj_formatted');
 
+    var seed = item.prSeed.replace('{{jiraTicket}}', lastTicket);
+
+    $field.val(seed);
+    $field.addClass('jj_formatted');
+  });
 }
 
 if(/(pull|compare)/.test(window.location.pathname)) {
@@ -114,7 +118,7 @@ if (/\/compare\//.test(window.location)) {
                  '<input type="text" placeholder="Time spent">' +
                  '<input type="text" placeholder="Assign to">' +
                  '<input type="text" placeholder="Additional comments">' +
-               '</div>'
+               '</div>';
   // $('.pull-request-composer .composer-meta').append(prompt);
 
 }
@@ -124,11 +128,11 @@ if (/\/compare\//.test(window.location)) {
 //
 function validatePR () {
   var $prompt = $('.compare-pr.open');
-  var $button = $prompt.find('.button.primary.composer-submit:not(.warn)')
+  var $button = $prompt.find('.button.primary.composer-submit:not(.warn)');
   if (!($prompt.length && $button.length)) { return; }
 
   // balacklisted functions
-  var blacklist = /(console.log|console.warn|writeFile|readFile|appendFile|var_dump|exit)/
+  var blacklist = /(console.log|console.warn|writeFile|readFile|appendFile|var_dump|exit)/;
   if(blacklist.test($('#diff').text())) {
     $button.addClass('warn');
     $button.before('<div class="pr-warning">There appears to be debugging code in this diff. proceed with caution.</div>');

@@ -7,7 +7,7 @@
         font-size: 100%;
       }
       .jj-pop-container {
-        width: 100px;
+        width: 350px;
         padding: 10px;
       }
 
@@ -15,24 +15,59 @@
         margin-bottom: 10px;
       }
 
-
       .jj-pop-container .pop-buttons button {
         width: 80px;
         padding: 10px;
+      }
+      .tab-buttons {
+        margin-bottom: 10px;
+      }
+      .tab-buttons a {
+        pointer-events: auto;
+        color: blue;
+        text-decoration: underline;
+        margin-right: 5px;
+      }
+      .tab-buttons a.active {
+        pointer-events: none;
+        font-size: 0.9rem;
+        color: #555;
+        text-decoration: none;
+      }
+      .tab-content .tab {
+        display: none;
+      }
+      .tab-content .tab.active {
+        display: block;
       }
 
     </style>
   </head>
   <body>
     <div class="jj-pop-container">
-      <div class="pop-buttons">
-        <div class="row">
-          <button class="pop-form">Fill Form</button>
-        </div>
+      <div class="tab-buttons">
+        <a href="#" class="form-fill btn active" data-target="#form-fill-tab">Form Fill</a>
+        <a href="#" class="pr-seed btn" data-target="#pr-seed-tab">PR Seed</a>
       </div>
-      <div class="row">
-        <input type="checkbox" id="auto-fill" class="auto-fill">
-        <label for="auto-fill">Auto Fill</label>
+      <div class="tab-content">
+        <div class="tab active" id="form-fill-tab">
+          <div class="pop-buttons">
+            <div class="row">
+              <button class="pop-form">Fill Form</button>
+            </div>
+          </div>
+          <div class="row">
+            <input type="checkbox" id="auto-fill" class="auto-fill">
+            <label for="auto-fill">Auto Fill</label>
+          </div>
+        </div>
+        <div class="tab" id="pr-seed-tab">
+          <textarea class="pr-seed-text" name="" id="" cols="50" rows="10"></textarea>
+          <div class="row">
+            <button class="save-pr-seed">Save</button>
+            <button class="reset-pr-seed">Reset</button>
+          </div>
+        </div>
       </div>
     </div>
     <script src="../lib/external/jquery.js"></script>
