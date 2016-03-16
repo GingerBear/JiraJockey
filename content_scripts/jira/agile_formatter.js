@@ -15,6 +15,7 @@ poller.addFunc(formatGoal);
 poller.addFunc(updateTicketFormatting);
 poller.addFunc(addUtilities);
 poller.addFunc(widgetLoader);
+poller.addFunc(addStoryPoints);
 
 // start the poller
 poller.start();
@@ -79,6 +80,25 @@ function widgetLoader () {
   if($('#notifications h1:contains(Page unavailable)').length && !$('#jj-cache-widget').length) {
     jiraCacheWidget.load('#notifications');
   }
+}
+
+function addStoryPoints() {
+  //When a rough size is set, add story points too.
+  var map = {
+    'S'    : 2,
+    'M'    : 4,
+    'L'    : 8,
+    'XL'   : 16,
+    'XXL'  : 40,
+    'Huge' : 80
+  };
+  $('#customfield_15300').on('change', function() {
+    var selectedValue = $(this).val();
+    var tshirt = $(this).find('option[value="' + selectedValue + '"]').text().trim();
+    var storyPoints = map[tshirt];
+
+    $('#customfield_10103').val(storyPoints);
+  });
 }
 
 //
