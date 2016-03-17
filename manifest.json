@@ -41,6 +41,15 @@
                      "content_scripts/utilities/form_populator/nameValueMap.js",
                      "content_scripts/utilities/form_populator/controller.js"
                   ]
+    },
+    {
+      "matches": ["http://*/*", "https://*/*", "ftp://*/*", "file:///*"],
+      "js": ["content_scripts/json-viewer.js"],
+      "run_at" : "document_end",
+      "all_frames" : true
     }
+  ],
+  "web_accessible_resources": [
+    "assets/json-viewer.css"
   ]
 }
